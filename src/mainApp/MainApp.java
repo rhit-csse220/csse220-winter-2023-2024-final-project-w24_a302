@@ -1,5 +1,11 @@
 package mainApp;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  * Class: MainApp
@@ -11,8 +17,33 @@ public class MainApp {
 	
 	
 	private void runApp() {
-		System.out.println("Write your cool arcade game here!");		
-	} // runApp
+		final String frameTitle = "Graphics Display";
+        final int frameWidth = 1000;
+        final int frameHeight = 600;
+        final int frameXLoc = 100;
+        final int frameYLoc = 100;
+
+        JFrame frame = new JFrame();
+        frame.setTitle(frameTitle);
+        frame.setSize(frameWidth, frameHeight);
+        frame.setLocation(frameXLoc, frameYLoc);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        MainAppComponent mainAppComponent = new MainAppComponent();
+        frame.add(mainAppComponent);
+        
+        Timer t = new Timer(50, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mainAppComponent.update();
+				mainAppComponent.repaint();
+				frame.repaint();
+			}
+		});
+		t.start();
+
+        frame.setVisible(true);
+    }// runApp
 
 	/**
 	 * ensures: runs the application
