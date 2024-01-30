@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
+//TODO we should create a level loader method to implement the levels
 
 public class MainAppComponent extends JComponent {
 	protected Hero hero;

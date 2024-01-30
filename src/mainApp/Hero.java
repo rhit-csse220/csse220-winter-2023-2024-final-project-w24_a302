@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
+
+//TODO need to implement a list to keep track of coins 
+//TODO need a variable for lives
+
 public class Hero {
 	protected int heroX;
 	protected int heroY;
@@ -26,3 +30,6 @@ public class Hero {
 		heroX = heroX + xSpeed;
 	}
 }
+
+
+

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
+//TODO Make an inheritance class for this and barriers reduce code duplication
+
 public class Coin {
 	protected int coinX;
 	protected int coinY;

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+//TODO lets use an abstract class for this and coins to reduce code duplication
+
 class Barriers {
 	protected int barX;
 	protected int barY;
@@ -31,4 +33,3 @@ class Barriers {
         g2.fill(bar);
     }
 }
-
