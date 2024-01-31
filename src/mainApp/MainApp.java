@@ -2,11 +2,11 @@ package mainApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
-
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -24,45 +24,106 @@ public class MainApp {
     final int frameXLoc = 100;
     final int frameYLoc = 100;
     
-	private void runApp() {
-		Scanner s = new Scanner(System.in);
-		String filename = null;
+    
+	private void runApp(int levelNumb) {
+		String filename = "level" + levelNumb + ".txt";
 		while(true) {
 			try {
-				System.out.println("What level should I load?  (e.g. levelN.txt)");
-				filename = s.next();
-				runGame(filename);
+				runGame(filename, levelNumb);
 				break;
 			} catch (FileNotFoundException e) {
-				System.out.println("File " + filename + " does not exist.  Please try again.");
+				System.out.println("Level " + (levelNumb) + " does not exist. Going back to level 1");
+				filename = "level1.txt";
+				levelNumb = 1;
+			} catch (InvalidLevelFormatException e) {
+				System.out.println(e.getMessage());
+				filename = "level1.txt";
+				levelNumb = 1;
 			}
 		}
 	}// runApp	
 	
-	private void runGame(String fileName) throws FileNotFoundException{
-		FileReader file = new FileReader(fileName);
-		Scanner s = new Scanner(file);
-		
+	private void runGame(String fileName, int levelNumb) throws FileNotFoundException, InvalidLevelFormatException{
 	    JFrame frame = new JFrame();
 	    frame.setTitle(frameTitle);
 	    frame.setSize(frameWidth, frameHeight);
 	    frame.setLocation(frameXLoc, frameYLoc);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
+		FileReader file = new FileReader(fileName);
+		Scanner s = new Scanner(file);
+		
+	    
         MainAppComponent mainAppComponent = new MainAppComponent();
         frame.add(mainAppComponent);
-        
         while(s.hasNext()) {
 			String[] level = s.nextLine().split(",");
 			if(level[0].equals("coin")) {
+				if(level.length != 3) {
+					throw new InvalidLevelFormatException(level[0]);
+				}
+				for (int j = 1; j < 3; j++) {
+					try {
+				        Integer.parseInt(level[j]);
+				    } catch (NumberFormatException e) {
+				        throw new InvalidLevelFormatException(level[0]);
+				    }
+				}
 				mainAppComponent.addCoin(level);
 			}
+			else if(level[0].equals("barrier")) {
+				if(level.length != 5) {
+					throw new InvalidLevelFormatException(level[0]);
+				}
+				for (int j = 1; j < 4; j++) {
+					try {
+				        Integer.parseInt(level[j]);
+				    } catch (NumberFormatException e) {
+				        throw new InvalidLevelFormatException(level[0]);
+				    }
+					if(level[4].equals("true")) {}
+					else if(level[4].equals("false")){}
+					else {
+						throw new InvalidLevelFormatException(level[0]);
+					}
+				}
+				
+				mainAppComponent.addBar(level);
+			}
+			else {
+				throw new InvalidLevelFormatException(level[0]);
+			}
 		}
+        
+        frame.addKeyListener(new KeyListener() {
+	        @Override
+	        public void keyTyped(KeyEvent e) {
+	        }
+
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	        	if(e.getKeyCode()==85) {
+	        		frame.dispose();
+	        		runApp(levelNumb+1);
+	        	}
+	        	if(e.getKeyCode()==68) {
+	        		frame.dispose();
+	        		runApp(levelNumb-1);
+	        	}
+	        	if(e.getKeyCode()==32) {
+	        		mainAppComponent.updateY();
+	        	}
+	        }
+
+	        @Override
+	        public void keyReleased(KeyEvent e) {
+	        }
+	    });
         
 		Timer t = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mainAppComponent.update();
+				mainAppComponent.updateX();
 				mainAppComponent.repaint();
 				frame.repaint();
 			}
@@ -77,7 +138,7 @@ public class MainApp {
 	 */
 	public static void main(String[] args) {
 		MainApp mainApp = new MainApp();
-		mainApp.runApp();		
+		mainApp.runApp(1);		
 	} // main
 
 }

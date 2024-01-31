@@ -2,20 +2,15 @@ package mainApp;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
 
-
-//TODO we should create a level loader method to implement the levels
-
 public class MainAppComponent extends JComponent {
 	Hero hero;
-	public ArrayList<Coin> coins = new ArrayList<Coin>();
-	//public ArrayList<Barriers> Barriers;
-	
+	public ArrayList<OtherObjects> objects = new ArrayList<OtherObjects>();
+
 	public MainAppComponent() {
 		hero = new Hero(10,500,5);
 		}
@@ -25,17 +20,43 @@ public class MainAppComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
         hero.drawOn(g2);
-		for (Coin c: this.coins) {
-			c.drawOn(g2);
-		}	
+		for (OtherObjects o: this.objects) {
+			o.drawOn(g2);
+		}		
 	}
 	
 	public void addCoin(String[] coinParts) {
 		Coin coin = new Coin(Integer.parseInt(coinParts[1]), Integer.parseInt(coinParts[2]));
-		coins.add(coin);
+		objects.add(coin);
 	}
 	
-	public void update() {
-		hero.heroX = hero.heroX + hero.xSpeed;
+	public void addBar(String[] barParts) {
+		boolean boo;
+		if(barParts[4].equals("true")) {
+			boo = true;
+		}
+		else{
+			boo = false;
+		}
+		Barriers bar = new Barriers(Integer.parseInt(barParts[1]), Integer.parseInt(barParts[2]), Integer.parseInt(barParts[3]), boo);
+		objects.add(bar);
+	}
+	
+	public void updateY() {
+		if(hero.heroY <= 0) {
+			hero.heroY = 0;
+		}
+		else {
+			hero.heroY = hero.heroY - 20;
+		}
+	}
+	
+	public void updateX() {
+		if(hero.heroX >= 935-hero.xSpeed) {
+			hero.heroX = 935;
+		}
+		else {
+			hero.heroX = hero.heroX + hero.xSpeed;
+		}
 	}
 }

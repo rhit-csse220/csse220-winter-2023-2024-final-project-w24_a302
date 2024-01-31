@@ -1,0 +1,2 @@
+coin,200,false
+barrier,300,450,70,22

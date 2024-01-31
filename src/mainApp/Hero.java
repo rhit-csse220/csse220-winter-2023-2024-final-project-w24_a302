@@ -6,19 +6,18 @@ import java.awt.geom.Dimension2D;
 import java.awt.geom.Ellipse2D;
 
 
-//TODO need to implement a list to keep track of coins 
-//TODO need a variable for lives
-
 public class Hero {
 	protected int heroX = 0;
 	protected int heroY= 0;
 	protected int xSpeed = 0;
 	protected Color heroColor = Color.CYAN;
+	protected int heroLives;
 	
 	Hero(int x, int y, int speed){
 		heroX = x;
 		heroY = y;
 		xSpeed = speed;
+		heroLives = 3;
 	}
 	
 	public void drawOn(Graphics2D g2) {

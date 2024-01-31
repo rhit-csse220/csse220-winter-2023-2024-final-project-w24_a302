@@ -1,3 +1,11 @@
-coin,400,400
-coin,410,510
-coin,100,100
+coin,300,200
+coin,610,410
+coin,550,100
+coin,100,500
+coin,800,500
+barrier,600,450,180,false
+barrier,500,30,20,false
+barrier,900,200,90,false
+barrier,600,250,15,true
+barrier,500,150,70,true
+barrier,800,50,50,true
