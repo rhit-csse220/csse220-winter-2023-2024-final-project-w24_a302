@@ -2,6 +2,7 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Ellipse2D;
 
 
@@ -9,15 +10,15 @@ import java.awt.geom.Ellipse2D;
 //TODO need a variable for lives
 
 public class Hero {
-	protected int heroX;
-	protected int heroY;
-	protected int xSpeed;
+	protected int heroX = 0;
+	protected int heroY= 0;
+	protected int xSpeed = 0;
 	protected Color heroColor = Color.CYAN;
 	
 	Hero(int x, int y, int speed){
-		this.heroX = x;
-		this.heroY = y;
-		this.xSpeed = speed;
+		heroX = x;
+		heroY = y;
+		xSpeed = speed;
 	}
 	
 	public void drawOn(Graphics2D g2) {
@@ -26,9 +27,6 @@ public class Hero {
         g2.fill(hero);
     }
 	
-	public void update() {
-		heroX = heroX + xSpeed;
-	}
 }
 
 
