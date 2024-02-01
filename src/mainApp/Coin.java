@@ -2,6 +2,7 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
 /**
@@ -12,12 +13,16 @@ import java.awt.geom.Ellipse2D;
  */
 public class Coin extends CollisionObjects{
 	protected Color coinColor = Color.YELLOW;
+	private MainAppComponent mainAppComponent;
 	
 	//Constructor setting the position
 	Coin(int x, int y){
 		super(x,y);
 	}
 	
+	public void setMainAppComponent(MainAppComponent mainAppComponent) {
+		this.mainAppComponent = mainAppComponent;
+	}
 	//Method used to draw the coin when called
 	@Override
 	public void drawOn(Graphics2D g2) {
@@ -25,4 +30,20 @@ public class Coin extends CollisionObjects{
         g2.setColor(coinColor);
         g2.fill(coin);
     }
+
+	@Override
+	public void collisionWithHero(Hero hero) {
+		// TODO Auto-generated method stub
+		hero.updateCoinCount();
+		
+		if(mainAppComponent != null) {
+			mainAppComponent.removeCollisionObjects(this);
+		}
+		
+	}
+	
+	public Rectangle getBox() {
+		return new Rectangle(x, y, 25, 25);
+	}
+	
 }

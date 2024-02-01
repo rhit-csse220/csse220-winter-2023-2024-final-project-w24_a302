@@ -1,6 +1,7 @@
 package mainApp;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 /**
  * Class: CollisionObjects
@@ -11,7 +12,6 @@ import java.awt.Graphics2D;
 public abstract class CollisionObjects {
 	protected int x;
 	protected int y;
-	
 	//Constructor for the position of the object
 	public CollisionObjects(int x, int y) {
 		this.x = x;
@@ -20,4 +20,9 @@ public abstract class CollisionObjects {
 	
 	//Abstract method for drawOn
 	public abstract void drawOn(Graphics2D g2);
+	
+	public abstract void collisionWithHero(Hero hero);
+	
+	public abstract Rectangle getBox();
+	
 }

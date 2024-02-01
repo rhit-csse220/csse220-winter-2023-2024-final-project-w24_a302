@@ -38,4 +38,15 @@ class Barriers extends CollisionObjects{
         g2.fill(bar);
         g2.rotate(-Math.toRadians(rotation), x+5, y+50);
     }
+
+	@Override
+	public void collisionWithHero(Hero hero) {
+		// TODO Auto-generated method stub
+		hero.heroLives -= 1;
+	}
+
+	@Override
+	public Rectangle getBox() {
+		return new Rectangle(x, y, 10, 100);
+	}
 }

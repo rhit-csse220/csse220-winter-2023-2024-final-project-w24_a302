@@ -119,12 +119,17 @@ public class MainApp {
 	        		runApp(levelNumb-1);
 	        	}
 	        	if(e.getKeyCode()==32) {
-	        		mainAppComponent.updateY();
+	        		mainAppComponent.updateHero();
+	        		mainAppComponent.toggleJump(true);
 	        	}
 	        }
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
+	        	if(e.getKeyCode() == 32) {
+	        		mainAppComponent.updateHero();
+	        		mainAppComponent.toggleJump(false);
+	        	}
 	        }
 	    });
         
@@ -132,7 +137,7 @@ public class MainApp {
 		Timer t = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mainAppComponent.updateX();
+				mainAppComponent.updateHero();
 				mainAppComponent.repaint();
 				frame.repaint();
 			}

@@ -3,6 +3,7 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,16 +26,19 @@ public class Hero {
 	protected Color heroColor = Color.CYAN;
 	protected int heroLives;
 	protected boolean isJumping = false;
-	protected final int Gravity = 1;
+	protected final int gravity = 1;
 	File org = new File("ImageFolder/Hero_character.png");
+	protected int coinCount;
 
 	//Hero constructor with position and speed
 	Hero(int x, int y, int speed) {
 		this.heroX = x;
 		this.heroY = y;
 		this.xSpeed = speed;
-		this.ySpeed = 20;
+		this.ySpeed = 10;
 		this.heroLives = 3;
+		this.isJumping = false;
+		this.coinCount = 0;
 
 	}
 
@@ -52,13 +56,36 @@ public class Hero {
 			g2.fill(hero);
 		}
 	}
+	
+	public void updateHero() {
+		if(!isJumping) {
+			falling();
+		} else {
+			moveUp();
+		}
+		sideMove();
+	}
 
 	//Method used to move the hero up and stop when it reaches the top of screen
 	public void moveUp() {
 		heroY -= ySpeed;
+		
+		//ySpeed -= gravity;
+		
 		if(heroY < 0) {
 			heroY = 0;
+			isJumping = false;
 		}
+	}
+	
+	public void falling() {
+		ySpeed += gravity;
+		heroY += ySpeed;
+		
+		if(heroY > 700) {
+			heroY = 700;
+		}
+		
 	}
 	
 	//Method used to create horizontal movement as soon as hero spawns and has hero stop when reach right side of the screen
@@ -68,5 +95,31 @@ public class Hero {
 		} else {
 			heroX = heroX + xSpeed;
 		}
+	}
+	
+	public void toggleJump(boolean jumping) {
+		this.isJumping = jumping;
+		if(jumping) {
+			ySpeed = 20;
+		}
+	}
+	
+	public void updateCoinCount() {
+		coinCount += 1;
+	}
+	
+	public Rectangle getBox() {
+		return new Rectangle(heroX, heroY, 50, 50);
+	}
+	
+	public boolean heroHitsObjects(CollisionObjects object) {
+		Rectangle heroBox = getBox();
+		Rectangle objectBox = object.getBox();
+		boolean collision = heroBox.intersects(objectBox);
+		if(collision) {
+			System.out.println("Collision detected with " + object.getClass().getSimpleName());
+		}
+		return collision;
+		
 	}
 }
