@@ -28,8 +28,8 @@ public class MainApp {
 	final String frameTitle = "Graphics Display";
     final int frameWidth = 1500;
     final int frameHeight = 800;
-    final int frameXLoc = 100;
-    final int frameYLoc = 100;
+   // final int frameXLoc = 100;
+    //final int frameYLoc = 100;
     
     //Runs the app and gives a message if there is no level or wrong format then returns to level 1
 	private void runApp(int levelNumb) {
@@ -55,7 +55,7 @@ public class MainApp {
 	    JFrame frame = new JFrame();
 	    frame.setTitle(frameTitle);
 	    frame.setSize(frameWidth, frameHeight);
-	    frame.setLocation(frameXLoc, frameYLoc);
+	   // frame.setLocation(frameXLoc, frameYLoc);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		FileReader file = new FileReader(fileName);

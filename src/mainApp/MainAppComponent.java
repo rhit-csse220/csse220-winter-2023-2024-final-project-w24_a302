@@ -19,7 +19,7 @@ public class MainAppComponent extends JComponent {
 	public ArrayList<CollisionObjects> objects = new ArrayList<CollisionObjects>();
 
 	public MainAppComponent() {
-		hero = new Hero(10,500,5);
+		hero = new Hero(10,700,5);
 		}
 	
 	@Override
