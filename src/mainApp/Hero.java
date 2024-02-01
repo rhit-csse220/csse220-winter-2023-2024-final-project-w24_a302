@@ -1,9 +1,14 @@
 package mainApp;
 
 import java.awt.Color;
-
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Class: Hero
@@ -21,6 +26,7 @@ public class Hero {
 	protected int heroLives;
 	protected boolean isJumping = false;
 	protected final int Gravity = 1;
+	File org = new File("ImageFolder/Hero_character.png");
 
 	//Hero constructor with position and speed
 	Hero(int x, int y, int speed) {
@@ -33,10 +39,18 @@ public class Hero {
 	}
 
 	//Method used to draw the hero
-	public void drawOn(Graphics2D g2) {
-		Ellipse2D hero = new Ellipse2D.Double(heroX, heroY, 50, 50);
-		g2.setColor(heroColor);
-		g2.fill(hero);
+	public void drawOn(Graphics2D g2) throws IOException {
+		try {
+			BufferedImage original = ImageIO.read(org);
+			g2.drawImage(original, heroX, heroY, 50, 50, null);
+		
+		}
+		 catch(IOException e) {
+			System.out.println(e.getMessage()); 
+			Ellipse2D hero = new Ellipse2D.Double(heroX, heroY, 50, 50);
+			g2.setColor(heroColor);
+			g2.fill(hero);
+		}
 	}
 
 	//Method used to move the hero up and stop when it reaches the top of screen
