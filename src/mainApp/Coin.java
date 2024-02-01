@@ -17,7 +17,7 @@ public class Coin extends CollisionObjects{
 	
 	//Constructor setting the position
 	Coin(int x, int y){
-		super(x,y);
+		super(x,y,true);
 	}
 	
 	public void setMainAppComponent(MainAppComponent mainAppComponent) {

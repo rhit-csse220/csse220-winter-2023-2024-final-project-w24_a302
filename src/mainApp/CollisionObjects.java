@@ -12,10 +12,12 @@ import java.awt.Rectangle;
 public abstract class CollisionObjects {
 	protected int x;
 	protected int y;
+	protected boolean isCoin;
 	//Constructor for the position of the object
-	public CollisionObjects(int x, int y) {
+	public CollisionObjects(int x, int y, boolean isCoin) {
 		this.x = x;
 		this.y = y;
+		this.isCoin = isCoin;
 	}
 	
 	//Abstract method for drawOn

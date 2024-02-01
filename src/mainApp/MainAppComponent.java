@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JComponent;
 
@@ -22,21 +23,29 @@ public class MainAppComponent extends JComponent {
 
 
 	public MainAppComponent() {
-		hero = new Hero(10,700,5);
+		hero = new Hero(10,700,1);
 		}
 	
 	public void checkForCollision() {
-		for(CollisionObjects object : objects) {
+		ArrayList<CollisionObjects> clone = new ArrayList<>(objects);
+		for(CollisionObjects object : clone) {
 			if(hero.heroHitsObjects(object)) {
-				object.collisionWithHero(hero);
+				if(object.isCoin) {
+					object.collisionWithHero(hero);
+					objects.remove(object);
+				} else {
+					object.collisionWithHero(hero);
+				}
 			}
 		}
+		
 	}
 		
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		updateHero();
         try {
 		hero.drawOn(g2);
 		repaint();
@@ -76,6 +85,7 @@ public class MainAppComponent extends JComponent {
 	
 	public void updateHero() {
 		hero.updateHero();
+		checkForCollision();
 		repaint();
 	}
 	
