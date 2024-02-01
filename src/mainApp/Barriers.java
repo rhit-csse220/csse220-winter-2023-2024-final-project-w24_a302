@@ -9,7 +9,7 @@ import java.awt.geom.Ellipse2D;
  * Class: Barriers
  * @author W24_A_302
  * <br>Purpose: Barriers is used to set position of barriers and draw barriers. This class extends the OtherObjects class
- * <br>Restrictions: None.
+ * <br>Restrictions: None
  */
 class Barriers extends CollisionObjects{
 	protected int rotation;
