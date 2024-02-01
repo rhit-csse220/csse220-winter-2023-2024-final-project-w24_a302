@@ -43,20 +43,13 @@ public class MainAppComponent extends JComponent {
 	}
 	
 	public void updateY() {
-		if(hero.heroY <= 0) {
-			hero.heroY = 0;
-		}
-		else {
-			hero.heroY = hero.heroY - 20;
-		}
+		hero.moveUp();
+		repaint();
 	}
 	
 	public void updateX() {
-		if(hero.heroX >= 935-hero.xSpeed) {
-			hero.heroX = 935;
-		}
-		else {
-			hero.heroX = hero.heroX + hero.xSpeed;
-		}
+		hero.sideMove();
+		repaint();
 	}
+	
 }
