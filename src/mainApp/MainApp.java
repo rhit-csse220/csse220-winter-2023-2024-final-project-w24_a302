@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 /**
  * Class: MainApp
- * @author Put your team name here
+ * @author W24_A_302
  * <br>Purpose: Top level class for CSSE220 Project containing main methods
  * <br>Restrictions: None
  */
@@ -24,7 +24,7 @@ public class MainApp {
     final int frameXLoc = 100;
     final int frameYLoc = 100;
     
-    
+    //Runs the app and gives a message if there is no level or wrong format then returns to level 1
 	private void runApp(int levelNumb) {
 		String filename = "level" + levelNumb + ".txt";
 		while(true) {
@@ -43,6 +43,7 @@ public class MainApp {
 		}
 	}// runApp	
 	
+	//Method used to run the game when given a fileName and levelNumb
 	private void runGame(String fileName, int levelNumb) throws FileNotFoundException, InvalidLevelFormatException{
 	    JFrame frame = new JFrame();
 	    frame.setTitle(frameTitle);
@@ -53,7 +54,7 @@ public class MainApp {
 		FileReader file = new FileReader(fileName);
 		Scanner s = new Scanner(file);
 		
-	    
+	    //Creates the level based off of which text file is loaded in
         MainAppComponent mainAppComponent = new MainAppComponent();
         frame.add(mainAppComponent);
         while(s.hasNext()) {
@@ -99,7 +100,7 @@ public class MainApp {
 	        @Override
 	        public void keyTyped(KeyEvent e) {
 	        }
-
+	        //Switches between levels using U key and D key and uses spacebar to move hero up
 	        @Override
 	        public void keyPressed(KeyEvent e) {
 	        	if(e.getKeyCode()==85) {
@@ -120,6 +121,7 @@ public class MainApp {
 	        }
 	    });
         
+        //Timer used to control the x position of the hero
 		Timer t = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

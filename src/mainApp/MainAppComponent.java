@@ -6,10 +6,16 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
-
+/**
+ * Class: MainAppComponent
+ * @author W24_A_302
+ * <br>Purpose: MainAppComponent used to handle user input and level aspects for the game. 
+ * 				It extends the JComponent class to provide a graphical user interface.
+ * <br>Restrictions: None
+ */
 public class MainAppComponent extends JComponent {
 	Hero hero;
-	public ArrayList<OtherObjects> objects = new ArrayList<OtherObjects>();
+	public ArrayList<CollisionObjects> objects = new ArrayList<CollisionObjects>();
 
 	public MainAppComponent() {
 		hero = new Hero(10,500,5);
@@ -20,16 +26,18 @@ public class MainAppComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
         hero.drawOn(g2);
-		for (OtherObjects o: this.objects) {
+		for (CollisionObjects o: this.objects) {
 			o.drawOn(g2);
 		}		
 	}
 	
+	//Method used to add coins to level loader when level is made
 	public void addCoin(String[] coinParts) {
 		Coin coin = new Coin(Integer.parseInt(coinParts[1]), Integer.parseInt(coinParts[2]));
 		objects.add(coin);
 	}
 	
+	//Method used to add electrified and non-electrified barriers to level loader when level is made
 	public void addBar(String[] barParts) {
 		boolean boo;
 		if(barParts[4].equals("true")) {
@@ -42,11 +50,13 @@ public class MainAppComponent extends JComponent {
 		objects.add(bar);
 	}
 	
+	//Method used to update the hero's Y position
 	public void updateY() {
 		hero.moveUp();
 		repaint();
 	}
 	
+	//Method used to update the hero's X position
 	public void updateX() {
 		hero.sideMove();
 		repaint();

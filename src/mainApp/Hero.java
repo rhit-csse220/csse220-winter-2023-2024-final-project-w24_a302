@@ -1,10 +1,17 @@
 package mainApp;
 
 import java.awt.Color;
+
 import java.awt.Graphics2D;
-import java.awt.geom.Dimension2D;
 import java.awt.geom.Ellipse2D;
 
+/**
+ * Class: Hero
+ * @author W24_A_302
+ * <br>Purpose: Hero is used to draw the hero and also give the starting position of the hero on the level.
+ * 				It also handles the movement of the hero in the X and Y direction.
+ * <br>Restrictions: None
+ */
 public class Hero {
 	protected int heroX;
 	protected int heroY;
@@ -15,6 +22,7 @@ public class Hero {
 	protected boolean isJumping = false;
 	protected final int Gravity = 1;
 
+	//Hero constructor with position and speed
 	Hero(int x, int y, int speed) {
 		this.heroX = x;
 		this.heroY = y;
@@ -24,12 +32,14 @@ public class Hero {
 
 	}
 
+	//Method used to draw the hero
 	public void drawOn(Graphics2D g2) {
 		Ellipse2D hero = new Ellipse2D.Double(heroX, heroY, 50, 50);
 		g2.setColor(heroColor);
 		g2.fill(hero);
 	}
 
+	//Method used to move the hero up and stop when it reaches the top of screen
 	public void moveUp() {
 		heroY -= ySpeed;
 		if(heroY < 0) {
@@ -37,7 +47,7 @@ public class Hero {
 		}
 	}
 	
-
+	//Method used to create horizontal movement as soon as hero spawns and has hero stop when reach right side of the screen
 	public void sideMove() {
 		if (heroX >= 935 - xSpeed) {
 			heroX = 935;
