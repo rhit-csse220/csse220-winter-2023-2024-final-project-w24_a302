@@ -4,39 +4,31 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public abstract class Missiles extends CollisionObjects {
+public abstract class Missiles {
 	protected int speed;
 	protected Color missileColor = Color.RED;
+	protected int x;
+	protected int y;
 
-	public Missiles(int x, int y, int speed) {
-		super(x, y, false);
-		this.speed = speed;
+	public Missiles(int x, int y) {
+		
+		this.x = x;
+		this.y = y;
+		this.speed = 5;
 		// TODO Auto-generated constructor stub
 	}
 	
-	public abstract void update();
-
-	@Override
+	public abstract void updateMissile();
+	
 	public void drawOn(Graphics2D g2) {
-		// TODO Auto-generated method stub
 		Rectangle missile = new Rectangle(x, y, 50, 10);
 		g2.setColor(missileColor);
 		g2.fill(missile);
 		g2.setColor(Color.BLACK);
-		
-		
 	}
 
-	@Override
-	public void collisionWithHero(Hero hero) {
-		// TODO Auto-generated method stub
 		
-	}
 
-	@Override
-	public Rectangle getBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract Rectangle getBox();
 
 }

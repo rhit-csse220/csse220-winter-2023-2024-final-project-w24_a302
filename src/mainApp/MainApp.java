@@ -19,22 +19,25 @@ import javax.swing.Timer;
 
 /**
  * Class: MainApp
- * @author W24_A_302
- * <br>Purpose: Top level class for CSSE220 Project containing main methods
- * <br>Restrictions: None
+ * 
+ * @author W24_A_302 <br>
+ *         Purpose: Top level class for CSSE220 Project containing main methods
+ *         <br>
+ *         Restrictions: None
  */
 public class MainApp {
-	
+
 	final String frameTitle = "Graphics Display";
-    final int frameWidth = 1500;
-    final int frameHeight = 800;
-   // final int frameXLoc = 100;
-    //final int frameYLoc = 100;
-    
-    //Runs the app and gives a message if there is no level or wrong format then returns to level 1
+	final int frameWidth = 1500;
+	final int frameHeight = 800;
+	// final int frameXLoc = 100;
+	// final int frameYLoc = 100;
+
+	// Runs the app and gives a message if there is no level or wrong format then
+	// returns to level 1
 	private void runApp(int levelNumb) {
 		String filename = "level" + levelNumb + ".txt";
-		while(true) {
+		while (true) {
 			try {
 				runGame(filename, levelNumb);
 				break;
@@ -48,9 +51,9 @@ public class MainApp {
 				levelNumb = 1;
 			}
 		}
-	}// runApp	
-	
-	//Method used to run the game when given a fileName and levelNumb
+	}// runApp
+
+	// Method used to run the game when given a fileName and levelNumb
 	private void runGame(String fileName, int levelNumb) throws FileNotFoundException, InvalidLevelFormatException{
 	    JFrame frame = new JFrame();
 	    frame.setTitle(frameTitle);
@@ -99,7 +102,7 @@ public class MainApp {
 				mainAppComponent.addBar(level);
 			}
 			else if(level[0].equals("pathmissile")) {
-				if(level.length != 4) {
+				if(level.length != 3) {
 					throw new InvalidLevelFormatException(level[0]);
 				}
 				for(int j = 1; j < 3; j++) {
@@ -108,9 +111,21 @@ public class MainApp {
 					} catch (NumberFormatException e) {
 						throw new InvalidLevelFormatException(level[0]);
 					}
-					throw new InvalidLevelFormatException(level[0]);
 				}
 				mainAppComponent.addPathMissile(level);
+			}
+			else if(level[0].equals("trackmissile")) {
+				if(level.length != 3) {
+					throw new InvalidLevelFormatException(level[0]);
+				}
+				for(int j = 1; j < 3; j++) {
+					try {
+						Integer.parseInt(level[j]);
+					} catch (NumberFormatException e) {
+						throw new InvalidLevelFormatException(level[0]);
+					}
+				}
+				mainAppComponent.addTrackMissile(level);
 			}
 		}
         
@@ -159,11 +174,12 @@ public class MainApp {
 
 	/**
 	 * ensures: runs the application
+	 * 
 	 * @param args unused
 	 */
 	public static void main(String[] args) {
 		MainApp mainApp = new MainApp();
-		mainApp.runApp(1);		
+		mainApp.runApp(1);
 	} // main
 
 }

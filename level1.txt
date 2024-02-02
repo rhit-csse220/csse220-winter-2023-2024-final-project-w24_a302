@@ -9,5 +9,6 @@ barrier,1400,300,0,false
 barrier,750,450,60,true
 barrier,1200,600,160,true
 barrier,800,50,50,true
-pathmissile,1500,800,5
-pathmissile,1500,300,5
+pathmissile,1500,600
+pathmissile,1500,300
+trackmissile,1500,200

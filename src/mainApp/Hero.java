@@ -38,7 +38,7 @@ public class Hero {
 		this.heroX = x;
 		this.heroY = y;
 		this.xSpeed = speed;
-		this.ySpeed = 6;
+		this.ySpeed = 10;
 		this.heroLives = 3;
 		this.isJumping = false;
 		this.coinCount = 0;
@@ -135,5 +135,13 @@ public class Hero {
 	public void setColliding(boolean colliding) {
 		isColliding = colliding;
 
+	}
+	
+	public int getX() {
+		return heroX;
+	}
+	
+	public int getY() {
+		return heroY;
 	}
 }

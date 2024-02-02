@@ -1,30 +1,26 @@
 package mainApp;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class PathMissile extends Missiles {
-	private int x;
-	private int y;
-	private int speed;
 
-
-	public PathMissile(int x, int y, int speed) {
-		super(x, y, speed);
-		this.x = x;
-		this.y = y;
-		this.speed = speed;
-		// TODO Auto-generated constructor stub
+	public PathMissile(int x, int y) {
+		super(x, y);
 	}
 
-	@Override
-	public void update() {
+	public void updateMissile() {
 		// TODO Auto-generated method stub
 		x -= speed;
 		
 	}
 	
+	
 	public Rectangle getBox() {
 		return new Rectangle(x,y,10,50);
 	}
 
+
+	
 }

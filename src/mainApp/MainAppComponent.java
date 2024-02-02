@@ -24,7 +24,7 @@ public class MainAppComponent extends JComponent {
 
 
 	public MainAppComponent() {
-		hero = new Hero(10,700,1);
+		hero = new Hero(10,700,2);
 		}
 	
 	public void checkForCollision() {
@@ -47,10 +47,6 @@ public class MainAppComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		updateHero();
-		for(Missiles missile : missiles) {
-			missile.drawOn(g2);
-			missile.update();
-		}
         try {
 		hero.drawOn(g2);
 		repaint();
@@ -60,6 +56,10 @@ public class MainAppComponent extends JComponent {
 		}
 		for (CollisionObjects o: this.objects) {
 			o.drawOn(g2);
+		}
+		for (Missiles missile : this.missiles) {
+			missile.drawOn(g2);
+			missile.updateMissile();
 		}
 		
 		g2.setFont(new Font("Arial", Font.BOLD, 16));
@@ -88,13 +88,15 @@ public class MainAppComponent extends JComponent {
 	}
 	
 	public void addPathMissile(String[] pathMissileParts) {
-		if(pathMissileParts.length < 4) {
-			System.err.println("Not enough data");
-			return;
-		}
-		PathMissile missile = new PathMissile(Integer.parseInt(pathMissileParts[1]), Integer.parseInt(pathMissileParts[2]), Integer.parseInt(pathMissileParts[3]));
+		PathMissile missile = new PathMissile(Integer.parseInt(pathMissileParts[1]), Integer.parseInt(pathMissileParts[2]));
 		missiles.add(missile);
 	}
+	
+	public void addTrackMissile(String[] trackMissileParts) {
+		TrackingMissile missile = new TrackingMissile(Integer.parseInt(trackMissileParts[1]), Integer.parseInt(trackMissileParts[2]), hero);
+		missiles.add(missile);
+	}
+	
 	
 	
 	public void updateHero() {

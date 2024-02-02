@@ -24,6 +24,9 @@ public class InvalidLevelFormatException extends Exception {
 		else if(error.equals("barrier")) {
 			return "'barriers' requires exactly 3 integers, followed by 1 boolean. Going back to level 1";
 		}
+		else if(error.equals("pathmissile")) {
+			return "'pathmissile' requires exactly 3 integers. Going back to level 1";
+		}
 		else {
 			return "Class '"+ error + "' does not exist. Going back to level 1";
 		}
