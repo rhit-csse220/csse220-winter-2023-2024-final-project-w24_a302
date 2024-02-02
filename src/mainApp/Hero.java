@@ -38,7 +38,7 @@ public class Hero {
 		this.heroX = x;
 		this.heroY = y;
 		this.xSpeed = speed;
-		this.ySpeed = 0;
+		this.ySpeed = 6;
 		this.heroLives = 3;
 		this.isJumping = false;
 		this.coinCount = 0;

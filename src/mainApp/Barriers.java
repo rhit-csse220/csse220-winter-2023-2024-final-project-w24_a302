@@ -44,15 +44,14 @@ class Barriers extends CollisionObjects {
 	public void collisionWithHero(Hero hero) {
 		// TODO Auto-generated method stub
 		if (!hero.isColliding()) {
-			Rectangle heroBox = hero.getBox();
-			Rectangle objectBox = getBox();
-			boolean collision = heroBox.intersects(objectBox);
-			if(collision)
+			hero.heroHitsObjects(this);
 			hero.heroLives -= 1;
 			if (hero.heroLives <= 0) {
 				hero.heroLives = 0;
 			}
 			hero.setColliding(true);
+		} else {
+			hero.setColliding(false);
 		}
 	}
 

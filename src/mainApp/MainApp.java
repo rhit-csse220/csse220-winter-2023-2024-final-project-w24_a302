@@ -98,8 +98,19 @@ public class MainApp {
 				
 				mainAppComponent.addBar(level);
 			}
-			else {
-				throw new InvalidLevelFormatException(level[0]);
+			else if(level[0].equals("pathmissile")) {
+				if(level.length != 4) {
+					throw new InvalidLevelFormatException(level[0]);
+				}
+				for(int j = 1; j < 3; j++) {
+					try {
+						Integer.parseInt(level[j]);
+					} catch (NumberFormatException e) {
+						throw new InvalidLevelFormatException(level[0]);
+					}
+					throw new InvalidLevelFormatException(level[0]);
+				}
+				mainAppComponent.addPathMissile(level);
 			}
 		}
         

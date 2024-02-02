@@ -20,6 +20,7 @@ import javax.swing.JComponent;
 public class MainAppComponent extends JComponent {
 	Hero hero;
 	public ArrayList<CollisionObjects> objects = new ArrayList<CollisionObjects>();
+	public ArrayList<Missiles> missiles = new ArrayList<Missiles>();
 
 
 	public MainAppComponent() {
@@ -46,6 +47,10 @@ public class MainAppComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		updateHero();
+		for(Missiles missile : missiles) {
+			missile.drawOn(g2);
+			missile.update();
+		}
         try {
 		hero.drawOn(g2);
 		repaint();
@@ -80,6 +85,15 @@ public class MainAppComponent extends JComponent {
 		}
 		Barriers bar = new Barriers(Integer.parseInt(barParts[1]), Integer.parseInt(barParts[2]), Integer.parseInt(barParts[3]), boo);
 		objects.add(bar);
+	}
+	
+	public void addPathMissile(String[] pathMissileParts) {
+		if(pathMissileParts.length < 4) {
+			System.err.println("Not enough data");
+			return;
+		}
+		PathMissile missile = new PathMissile(Integer.parseInt(pathMissileParts[1]), Integer.parseInt(pathMissileParts[2]), Integer.parseInt(pathMissileParts[3]));
+		missiles.add(missile);
 	}
 	
 	
