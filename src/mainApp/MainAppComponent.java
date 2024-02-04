@@ -1,5 +1,6 @@
 package mainApp;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -62,6 +63,7 @@ public class MainAppComponent extends JComponent {
 			missile.updateMissile();
 		}
 		
+		g2.setColor(Color.BLACK);
 		g2.setFont(new Font("Arial", Font.BOLD, 16));
 		g2.drawString("Coins: " + hero.coinCount, getWidth() - 100, 20);
 		g2.drawString("Lives: " + hero.heroLives, getWidth() - 100, 40);
@@ -112,5 +114,25 @@ public class MainAppComponent extends JComponent {
 	public void removeCollisionObjects(CollisionObjects object) {
 		objects.remove(object);
 	}
-
+	
+	public boolean checkWinner() {
+		if(hero.heroX >= 1435) {
+			hero.heroX = 0;
+			return true;
+		}
+		return false;
+	}
+	
+	public void setCoinAndLives(int lives, int coins) {
+		hero.coinCount = coins;
+		hero.heroLives = lives;
+	}
+	
+	public int getCoins() {
+		return hero.coinCount;
+	}
+	
+	public int getLives() {
+		return hero.heroLives;
+	}
 }

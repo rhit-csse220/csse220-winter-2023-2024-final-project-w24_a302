@@ -11,7 +11,6 @@ public class PathMissile extends Missiles {
 	}
 
 	public void updateMissile() {
-		// TODO Auto-generated method stub
 		x -= speed;
 		
 	}
