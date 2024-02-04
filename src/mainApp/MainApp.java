@@ -152,7 +152,7 @@ public class MainApp {
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
-	        	if(e.getKeyCode() == 32) {
+	        	if(e.getKeyCode() == 32) {  
 	        		mainAppComponent.updateHero();
 	        		mainAppComponent.toggleJump(false);
 	        	}

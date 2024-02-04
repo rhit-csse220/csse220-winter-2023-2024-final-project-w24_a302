@@ -112,4 +112,5 @@ public class MainAppComponent extends JComponent {
 	public void removeCollisionObjects(CollisionObjects object) {
 		objects.remove(object);
 	}
+
 }
