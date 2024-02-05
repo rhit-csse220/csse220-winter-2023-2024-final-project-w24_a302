@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Class: Barriers
@@ -18,6 +23,7 @@ class Barriers extends CollisionObjects {
 	protected boolean isCharged;
 	protected Color blankColor = Color.GRAY;
 	protected Color chargeColor = Color.ORANGE;
+	File org = new File("ImageFolder/barrier_electric.png");
 
 	// Constructor setting the position, rotation, and if the barrier is electrified
 	Barriers(int x, int y, int rotation, boolean isCharged) {
@@ -32,11 +38,19 @@ class Barriers extends CollisionObjects {
 		g2.rotate(Math.toRadians(rotation), x + 5, y + 50);
 		Rectangle bar = new Rectangle(x, y, 10, 100);
 		if (isCharged) {
-			g2.setColor(chargeColor);
+			try {
+				BufferedImage original = ImageIO.read(org);
+				g2.drawImage(original, x, y, 10, 100, null);
+
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+				g2.setColor(chargeColor);
+				g2.fill(bar);
+			}
 		} else {
 			g2.setColor(blankColor);
+			g2.fill(bar);
 		}
-		g2.fill(bar);
 		g2.rotate(-Math.toRadians(rotation), x + 5, y + 50);
 	}
 
