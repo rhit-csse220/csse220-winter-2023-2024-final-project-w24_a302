@@ -1,1 +1,13 @@
-parrot,200,200
+coin,500,350
+coin,1000,200
+coin,750,300
+coin,100,400
+coin,1300,600
+barrier,300,700,180,false
+barrier,700,200,20,false
+barrier,1000,450,90,false
+barrier,1300,300,15,true
+barrier,500,250,70,true
+barrier,800,50,50,true
+pathmissile,1500,700
+trackmissile,1500,100
