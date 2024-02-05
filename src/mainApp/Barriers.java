@@ -42,7 +42,6 @@ class Barriers extends CollisionObjects {
 
 	@Override
 	public void collisionWithHero(Hero hero) {
-		// TODO Auto-generated method stub
 		if (!hero.isColliding()) {
 			hero.heroHitsObjects(this);
 			hero.heroLives -= 1;

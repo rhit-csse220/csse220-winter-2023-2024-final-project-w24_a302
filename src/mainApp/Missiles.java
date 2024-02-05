@@ -22,7 +22,6 @@ public abstract class Missiles {
 		this.x = x;
 		this.y = y;
 		this.speed = 5;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public abstract void updateMissile();

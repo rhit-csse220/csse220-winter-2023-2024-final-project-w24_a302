@@ -12,12 +12,10 @@ public class TrackingMissile extends Missiles {
 		super(x, y);
 		this.target = target;
 		this.speed = 3;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void updateMissile() {
-		// TODO Auto-generated method stub
 		double dx = target.getX() - x;
 		double dy = target.getY() - y;
 		double angle = Math.atan2(dy, dx);
@@ -25,14 +23,13 @@ public class TrackingMissile extends Missiles {
 		double vx = this.speed * Math.cos(angle);
 		double vy = this.speed * Math.sin(angle);
 		
-		x += vx;
+		x += vx;   
 		y += vy;
 		
 	}
 
 	@Override
 	public Rectangle getBox() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

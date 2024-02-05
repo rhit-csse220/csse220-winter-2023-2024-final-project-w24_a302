@@ -35,11 +35,11 @@ public class MainApp {
 
 	// Runs the app and gives a message if there is no level or wrong format then
 	// returns to level 1
-	private void runApp(int levelNumb) {
+	private void runApp(int levelNumb, int lives, int coins) {
 		String filename = "level" + levelNumb + ".txt";
 		while (true) {
 			try {
-				runGame(filename, levelNumb);
+				runGame(filename, levelNumb, lives, coins);
 				break;
 			} catch (FileNotFoundException e) {
 				System.out.println("Level " + (levelNumb) + " does not exist. Going back to level 1");
@@ -49,12 +49,14 @@ public class MainApp {
 				System.out.println(e.getMessage());
 				filename = "level1.txt";
 				levelNumb = 1;
+				lives = 3;
+				coins = 0;
 			}
 		}
 	}// runApp
 
 	// Method used to run the game when given a fileName and levelNumb
-	private void runGame(String fileName, int levelNumb) throws FileNotFoundException, InvalidLevelFormatException{
+	private void runGame(String fileName, int levelNumb, int lives, int coins) throws FileNotFoundException, InvalidLevelFormatException{
 	    JFrame frame = new JFrame();
 	    frame.setTitle(frameTitle);
 	    frame.setSize(frameWidth, frameHeight);
@@ -67,6 +69,9 @@ public class MainApp {
 	    //Creates the level based off of which text file is loaded in
         MainAppComponent mainAppComponent = new MainAppComponent();
         frame.add(mainAppComponent);
+        
+        mainAppComponent.setCoinAndLives(lives, coins);
+        
         while(s.hasNext()) {
 			String[] level = s.nextLine().split(",");
 			if(level[0].equals("coin")) {
@@ -138,11 +143,11 @@ public class MainApp {
 	        public void keyPressed(KeyEvent e) {
 	        	if(e.getKeyCode()==85) {
 	        		frame.dispose();
-	        		runApp(levelNumb+1);
+	        		runApp(levelNumb+1, mainAppComponent.getLives(), mainAppComponent.getCoins());
 	        	}
 	        	if(e.getKeyCode()==68) {
 	        		frame.dispose();
-	        		runApp(levelNumb-1);
+	        		runApp(levelNumb-1, mainAppComponent.getLives(), mainAppComponent.getCoins());
 	        	}
 	        	if(e.getKeyCode()==32) {
 	        		mainAppComponent.updateHero();
@@ -152,20 +157,27 @@ public class MainApp {
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
-	        	if(e.getKeyCode() == 32) {
+	        	if(e.getKeyCode() == 32) {  
 	        		mainAppComponent.updateHero();
 	        		mainAppComponent.toggleJump(false);
 	        	}
 	        }
 	    });
         
+        
         //Timer used to control the x position of the hero
 		Timer t = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mainAppComponent.updateHero();
-				mainAppComponent.repaint();
-				frame.repaint();
+				if(mainAppComponent.checkWinner()) {
+					frame.dispose();
+					runApp(levelNumb+1, mainAppComponent.getLives(), mainAppComponent.getCoins());
+				}
+				else {
+					mainAppComponent.updateHero();
+					mainAppComponent.repaint();
+					frame.repaint();
+				}
 			}
 		});
 		t.start();
@@ -179,7 +191,7 @@ public class MainApp {
 	 */
 	public static void main(String[] args) {
 		MainApp mainApp = new MainApp();
-		mainApp.runApp(1);
+		mainApp.runApp(1,3,0);
 	} // main
 
 }

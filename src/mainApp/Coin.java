@@ -33,7 +33,6 @@ public class Coin extends CollisionObjects{
 
 	@Override
 	public void collisionWithHero(Hero hero) {
-		// TODO Auto-generated method stub
 		hero.updateCoinCount();
 		
 		if(mainAppComponent != null) {

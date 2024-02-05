@@ -13,6 +13,7 @@ public abstract class CollisionObjects {
 	protected int x;
 	protected int y;
 	protected boolean isCoin;
+	
 	//Constructor for the position of the object
 	public CollisionObjects(int x, int y, boolean isCoin) {
 		this.x = x;

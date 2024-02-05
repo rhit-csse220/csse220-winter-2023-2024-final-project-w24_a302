@@ -32,6 +32,7 @@ public class Hero {
 	File org = new File("ImageFolder/Hero_character.png");
 	protected int coinCount;
 	protected boolean isColliding = false;
+	protected double fallTime;
 
 	// Hero constructor with position and speed
 	Hero(int x, int y, int speed) {
@@ -62,6 +63,7 @@ public class Hero {
 
 	public void updateHero() {
 		if (!isJumping) {
+			this.fallTime += 0.01;
 			falling();
 		} else {
 			moveUp();
@@ -83,9 +85,10 @@ public class Hero {
 
 	public void falling() {
 		// ySpeed += gravity;
-		heroY += ySpeed;
+		heroY += Math.pow(2, fallTime);
 
 		if (heroY > 700) {
+			this.fallTime = 0;
 			heroY = 700;
 		}
 
@@ -104,7 +107,8 @@ public class Hero {
 	public void toggleJump(boolean jumping) {
 		this.isJumping = jumping;
 		if (jumping) {
-			ySpeed = 1;
+			this.fallTime = 0;
+			ySpeed = 2;
 		}
 	}
 
@@ -144,4 +148,5 @@ public class Hero {
 	public int getY() {
 		return heroY;
 	}
+
 }
