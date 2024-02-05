@@ -33,12 +33,7 @@ public class Coin extends CollisionObjects{
 
 	@Override
 	public void collisionWithHero(Hero hero) {
-		hero.updateCoinCount();
-		
-		if(mainAppComponent != null) {
-			mainAppComponent.removeCollisionObjects(this);
-		}
-		
+		hero.updateCoinCount();		
 	}
 	
 	public Rectangle getBox() {
