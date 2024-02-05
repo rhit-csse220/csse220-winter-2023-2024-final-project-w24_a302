@@ -11,6 +11,10 @@ public class PathMissile extends Missiles {
 	}
 
 	public void updateMissile() {
+		if(x <= 0) {
+			x = 1500;
+			x-=speed;
+		}
 		x -= speed;
 		
 	}

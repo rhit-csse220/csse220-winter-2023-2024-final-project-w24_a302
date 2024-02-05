@@ -9,3 +9,5 @@ barrier,1200,700,90,false
 barrier,1000,400,15,true
 barrier,500,150,70,true
 barrier,800,50,50,true
+pathmissile,1500,700
+trackmissile,1500,100
