@@ -21,7 +21,7 @@ import javax.swing.Timer;
  * Class: MainApp
  * 
  * @author W24_A_302 <br>
- *         Purpose: Top level class for CSSE220 Project containing main methods
+ *         Purpose: top level class for CSSE220 Project containing main methods
  *         <br>
  *         Restrictions: None
  */
