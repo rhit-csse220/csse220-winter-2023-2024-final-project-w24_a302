@@ -31,11 +31,13 @@ public class Coin extends CollisionObjects{
         g2.fill(coin);
     }
 
+	//updates the coin count if the coin collides with the hero
 	@Override
 	public void collisionWithHero(Hero hero) {
 		hero.updateCoinCount();		
 	}
 	
+	//gets the bounding box for the given coin
 	public Rectangle getBox() {
 		return new Rectangle(x, y, 25, 25);
 	}

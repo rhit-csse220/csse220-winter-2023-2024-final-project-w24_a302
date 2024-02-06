@@ -45,6 +45,7 @@ public class MainApp {
 				System.out.println("Level " + (levelNumb) + " does not exist. Going back to level 1");
 				filename = "level1.txt";
 				levelNumb = 1;
+				coins = 0;
 			} catch (InvalidLevelFormatException e) {
 				System.out.println(e.getMessage());
 				filename = "level1.txt";

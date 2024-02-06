@@ -24,8 +24,10 @@ public abstract class CollisionObjects {
 	//Abstract method for drawOn
 	public abstract void drawOn(Graphics2D g2);
 	
+	//Abstract method for collision with hero
 	public abstract void collisionWithHero(Hero hero);
 	
+	//Abstract method for getBox
 	public abstract Rectangle getBox();
 	
 }

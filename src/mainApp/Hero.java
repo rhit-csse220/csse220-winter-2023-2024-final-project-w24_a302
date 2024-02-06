@@ -28,7 +28,6 @@ public class Hero {
 	protected Color heroColor = Color.CYAN;
 	protected int heroLives;
 	protected boolean isJumping = false;
-	protected final int gravity = 0;
 	File org = new File("ImageFolder/Hero_character.png");
 	protected int coinCount;
 	protected boolean isColliding = false;
@@ -61,6 +60,7 @@ public class Hero {
 		}
 	}
 
+	//updates hero depending on whether it is jumping or falling
 	public void updateHero() {
 		if (!isJumping) {
 			this.fallTime += 0.01;
@@ -75,16 +75,14 @@ public class Hero {
 	public void moveUp() {
 		heroY -= ySpeed;
 
-		// ySpeed -= gravity;
-
 		if (heroY < 0) {
 			heroY = 0;
 			isJumping = false;
 		}
 	}
 
+	//updates the heroY when it is falling and depending how much time it has been doing so
 	public void falling() {
-		// ySpeed += gravity;
 		heroY += Math.pow(2, fallTime);
 
 		if (heroY > 700) {
@@ -104,6 +102,7 @@ public class Hero {
 		}
 	}
 
+	//toggles when the hero is jumping or falling and sets the ySpeed if jumping
 	public void toggleJump(boolean jumping) {
 		this.isJumping = jumping;
 		if (jumping) {
@@ -112,14 +111,17 @@ public class Hero {
 		}
 	}
 
+	//updates the coin count to go +1 when prompted
 	public void updateCoinCount() {
 		coinCount += 1;
 	}
 
+	//gets the bounding box for the hero that is used for collisions
 	public Rectangle getBox() {
 		return new Rectangle(heroX, heroY, 50, 50);
 	}
 
+	//says whether the hero is hit by an objects and does the corresponding action for what the hero hit
 	public boolean heroHitsObjects(CollisionObjects object) {
 		Rectangle heroBox = getBox();
 		Rectangle objectBox = object.getBox();
@@ -132,19 +134,23 @@ public class Hero {
 
 	}
 
+	//gets whether the hero is colliding or not
 	public boolean isColliding() {
 		return isColliding;
 	}
 
+	//sets whether the hero is colliding or not
 	public void setColliding(boolean colliding) {
 		isColliding = colliding;
 
 	}
 	
+	//returns the heroX value
 	public int getX() {
 		return heroX;
 	}
 	
+	//returns the heroY value
 	public int getY() {
 		return heroY;
 	}

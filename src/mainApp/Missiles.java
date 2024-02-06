@@ -9,7 +9,14 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+/**
+ * Class: Missiles
+ * 
+ * @author W24_A_302 <br>
+ *         Purpose: Abstract class that contains data and functions for both 
+ *         tracking and path missiles <br>
+ *         Restrictions: None
+ */
 public abstract class Missiles {
 	protected int speed;
 	protected Color missileColor = Color.RED;
@@ -17,6 +24,7 @@ public abstract class Missiles {
 	protected int y;
 	File org = new File("ImageFolder/Missile.png");
 
+	//Constructor that sets variable values
 	public Missiles(int x, int y) {
 		
 		this.x = x;
@@ -24,8 +32,10 @@ public abstract class Missiles {
 		this.speed = 5;
 	}
 	
+	//abstract function that the subclasses will have to implement
 	public abstract void updateMissile();
 	
+	//draws any missile's onto the screen when given the needed x and y values that are stored
 	public void drawOn(Graphics2D g2) {
 		try {
 			BufferedImage original = ImageIO.read(org);

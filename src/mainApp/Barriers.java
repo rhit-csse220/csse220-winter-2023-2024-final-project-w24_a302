@@ -54,6 +54,7 @@ class Barriers extends CollisionObjects {
 		g2.rotate(-Math.toRadians(rotation), x + 5, y + 50);
 	}
 
+	//removes a life if the hero collides with the barrier
 	@Override
 	public void collisionWithHero(Hero hero) {
 		if (!hero.isColliding()) {
@@ -68,6 +69,7 @@ class Barriers extends CollisionObjects {
 		}
 	}
 
+	//gets the bounding box for the given barrier
 	@Override
 	public Rectangle getBox() {
 		return new Rectangle(x, y, 10, 100);

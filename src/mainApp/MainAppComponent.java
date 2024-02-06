@@ -89,32 +89,37 @@ public class MainAppComponent extends JComponent {
 		objects.add(bar);
 	}
 	
+	//Method used to add path missiles to level loader when level is made
 	public void addPathMissile(String[] pathMissileParts) {
 		PathMissile missile = new PathMissile(Integer.parseInt(pathMissileParts[1]), Integer.parseInt(pathMissileParts[2]));
 		missiles.add(missile);
 	}
 	
+	//Method used to add tracking missiles to level loader when level is made
 	public void addTrackMissile(String[] trackMissileParts) {
 		TrackingMissile missile = new TrackingMissile(Integer.parseInt(trackMissileParts[1]), Integer.parseInt(trackMissileParts[2]), hero);
 		missiles.add(missile);
 	}
 	
 	
-	
+	//Update hero and checks for collision before repainting
 	public void updateHero() {
 		hero.updateHero();
 		checkForCollision();
 		repaint();
 	}
 	
+	//toggles whether the character is jumping or falling
 	public void toggleJump(boolean jumping) {
 		hero.toggleJump(jumping);
 	}
 	
+	//Removes a collision object when prompted
 	public void removeCollisionObjects(CollisionObjects object) {
 		objects.remove(object);
 	}
 	
+	//check is the hero gets to the right side of the screen
 	public boolean checkWinner() {
 		if(hero.heroX >= 1435) {
 			hero.heroX = 0;
@@ -123,15 +128,18 @@ public class MainAppComponent extends JComponent {
 		return false;
 	}
 	
+	//sets the coins and lives for the hero
 	public void setCoinAndLives(int lives, int coins) {
 		hero.coinCount = coins;
 		hero.heroLives = lives;
 	}
 	
+	//gets the amount of coins that have been collected throughout the hero's journey
 	public int getCoins() {
 		return hero.coinCount;
 	}
 	
+	//gets the amount of lives that the hero has left
 	public int getLives() {
 		return hero.heroLives;
 	}
