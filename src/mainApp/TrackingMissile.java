@@ -38,7 +38,7 @@ public class TrackingMissile extends Missiles {
 		
 	}
 
-	//gets the bounding box of the missile that is used for collsions
+	//gets the bounding box of the missile that is used for collisions
 	@Override
 	public Rectangle getBox() {
 		return null;
