@@ -30,4 +30,6 @@ public abstract class CollisionObjects {
 	//Abstract method for getBox
 	public abstract Rectangle getBox();
 	
+	//Hello
+	
 }
