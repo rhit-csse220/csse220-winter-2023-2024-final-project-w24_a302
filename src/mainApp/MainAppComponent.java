@@ -30,6 +30,7 @@ public class MainAppComponent extends JComponent {
 	
 	public void checkForCollision() {
 		ArrayList<CollisionObjects> clone = new ArrayList<>(objects);
+		ArrayList<Missiles> cloneM = new ArrayList<>(missiles);
 		for(CollisionObjects object : clone) {
 			if(hero.heroHitsObjects(object)) {
 				if(object.isCoin) {
@@ -39,8 +40,15 @@ public class MainAppComponent extends JComponent {
 					object.collisionWithHero(hero);
 				}
 			}
+			
 		}
 		
+		for(Missiles missile: cloneM) {
+			if(hero.heroHitsMissile(missile)) {
+				missile.collisionWithHero(hero);
+				missiles.remove(missile);
+			}
+		}
 	}
 		
 	@Override

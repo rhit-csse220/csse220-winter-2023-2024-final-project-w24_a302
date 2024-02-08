@@ -54,6 +54,14 @@ public abstract class Missiles {
 
 		
 
-	public abstract Rectangle getBox();
+	public Rectangle getBox() {
+		return new Rectangle(x, y, 50, 10);
+	}
+	
+	public void collisionWithHero(Hero hero) {
+		hero.heroLives--;
+		hero.heroX = 10;
+		hero.heroY = 700;
+	}
 
 }

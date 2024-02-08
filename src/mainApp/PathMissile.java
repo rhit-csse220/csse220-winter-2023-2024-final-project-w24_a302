@@ -30,9 +30,11 @@ public class PathMissile extends Missiles {
 	}
 	
 	//gets the bounding box that will get used for collisions
-	public Rectangle getBox() {
-		return new Rectangle(x,y,10,50);
-	}
+	
+
+	
+	
+	
 
 
 	

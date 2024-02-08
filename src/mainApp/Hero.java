@@ -133,6 +133,17 @@ public class Hero {
 		return collision;
 
 	}
+	
+	public boolean heroHitsMissile(Missiles missile) {
+		Rectangle heroBox = getBox();
+		Rectangle missileBox = missile.getBox();
+		boolean collision = heroBox.intersects(missileBox);
+		if (collision) {
+			System.out.println("Collision detected with " + missile.getClass().getSimpleName());
+			setColliding(true);
+		}
+		return collision;
+	}
 
 	//gets whether the hero is colliding or not
 	public boolean isColliding() {

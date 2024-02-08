@@ -57,15 +57,8 @@ class Barriers extends CollisionObjects {
 	//removes a life if the hero collides with the barrier
 	@Override
 	public void collisionWithHero(Hero hero) {
-		if (!hero.isColliding()) {
-			hero.heroHitsObjects(this);
-			hero.heroLives -= 1;
-			if (hero.heroLives <= 0) {
-				hero.heroLives = 0;
-			}
-			hero.setColliding(true);
-		} else {
-			hero.setColliding(false);
+		if(!isCharged) {
+			hero.xSpeed = 0;
 		}
 	}
 
