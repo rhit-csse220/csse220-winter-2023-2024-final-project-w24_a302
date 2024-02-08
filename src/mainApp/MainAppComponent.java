@@ -37,7 +37,10 @@ public class MainAppComponent extends JComponent {
 					object.collisionWithHero(hero);
 					objects.remove(object);
 				} else {
+				
 					object.collisionWithHero(hero);
+					hero.updateHero();
+					
 				}
 			}
 			

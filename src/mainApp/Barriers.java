@@ -58,7 +58,14 @@ class Barriers extends CollisionObjects {
 	@Override
 	public void collisionWithHero(Hero hero) {
 		if(!isCharged) {
-			hero.xSpeed = 0;
+			
+			
+			Rectangle heroBox = hero.getBox();
+			Rectangle barrier = getBox();
+			if(heroBox.intersects(barrier)) {
+				hero.setColliding(true);
+			}
+			hero.setColliding(false);
 		}
 	}
 

@@ -95,10 +95,12 @@ public class Hero {
 	// Method used to create horizontal movement as soon as hero spawns and has hero
 	// stop when reach right side of the screen
 	public void sideMove() {
-		if (heroX >= 1435 - xSpeed) {
-			heroX = 1435;
-		} else {
-			heroX = heroX + xSpeed;
+		if(!isColliding) {
+			if (heroX >= 1435 - xSpeed) {
+				heroX = 1435;
+			} else {
+				heroX = heroX + xSpeed;
+			}
 		}
 	}
 
