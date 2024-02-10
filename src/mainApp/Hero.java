@@ -30,7 +30,6 @@ public class Hero {
 	protected boolean isJumping = false;
 	File org = new File("ImageFolder/Hero_character.png");
 	protected int coinCount;
-	protected boolean isColliding = false;
 	protected double fallTime;
 
 	// Hero constructor with position and speed
@@ -42,7 +41,6 @@ public class Hero {
 		this.heroLives = 3;
 		this.isJumping = false;
 		this.coinCount = 0;
-		this.isColliding = false;
 
 	}
 
@@ -68,7 +66,7 @@ public class Hero {
 		} else {
 			moveUp();
 		}
-		sideMove();
+		sideMove();                       
 	}
 
 	// Method used to move the hero up and stop when it reaches the top of screen
@@ -85,9 +83,9 @@ public class Hero {
 	public void falling() {
 		heroY += Math.pow(2, fallTime);
 
-		if (heroY > 700) {
+		if (heroY > 710) {
 			this.fallTime = 0;
-			heroY = 700;
+			heroY = 710;
 		}
 
 	}
@@ -95,13 +93,11 @@ public class Hero {
 	// Method used to create horizontal movement as soon as hero spawns and has hero
 	// stop when reach right side of the screen
 	public void sideMove() {
-		if(!isColliding) {
 			if (heroX >= 1435 - xSpeed) {
 				heroX = 1435;
 			} else {
 				heroX = heroX + xSpeed;
 			}
-		}
 	}
 
 	//toggles when the hero is jumping or falling and sets the ySpeed if jumping
@@ -118,6 +114,7 @@ public class Hero {
 		coinCount += 1;
 	}
 
+
 	//gets the bounding box for the hero that is used for collisions
 	public Rectangle getBox() {
 		return new Rectangle(heroX, heroY, 50, 50);
@@ -130,10 +127,8 @@ public class Hero {
 		boolean collision = heroBox.intersects(objectBox);
 		if (collision) {
 			System.out.println("Collision detected with " + object.getClass().getSimpleName());
-			setColliding(true);
 		}
 		return collision;
-
 	}
 	
 	public boolean heroHitsMissile(Missiles missile) {
@@ -142,20 +137,8 @@ public class Hero {
 		boolean collision = heroBox.intersects(missileBox);
 		if (collision) {
 			System.out.println("Collision detected with " + missile.getClass().getSimpleName());
-			setColliding(true);
 		}
 		return collision;
-	}
-
-	//gets whether the hero is colliding or not
-	public boolean isColliding() {
-		return isColliding;
-	}
-
-	//sets whether the hero is colliding or not
-	public void setColliding(boolean colliding) {
-		isColliding = colliding;
-
 	}
 	
 	//returns the heroX value

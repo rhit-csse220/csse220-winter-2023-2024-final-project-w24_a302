@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * Class: MainAppComponent
@@ -25,7 +27,7 @@ public class MainAppComponent extends JComponent {
 
 
 	public MainAppComponent() {
-		hero = new Hero(10,700,2);
+		hero = new Hero(10,735,2);
 		}
 	
 	public void checkForCollision() {
@@ -39,7 +41,7 @@ public class MainAppComponent extends JComponent {
 				} else {
 				
 					object.collisionWithHero(hero);
-					hero.updateHero();
+					
 					
 				}
 			}
@@ -117,7 +119,16 @@ public class MainAppComponent extends JComponent {
 	public void updateHero() {
 		hero.updateHero();
 		checkForCollision();
+		if(hero.heroLives <= 0) {
+			
+			JFrame main = (JFrame) SwingUtilities.getWindowAncestor(this);
+			main.dispose();
+			
+			new GameOver();
+			setEnabled(false);
+		} else {
 		repaint();
+		}
 	}
 	
 	//toggles whether the character is jumping or falling
@@ -154,4 +165,5 @@ public class MainAppComponent extends JComponent {
 	public int getLives() {
 		return hero.heroLives;
 	}
+	
 }

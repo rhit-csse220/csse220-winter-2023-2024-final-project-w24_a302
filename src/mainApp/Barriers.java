@@ -24,6 +24,7 @@ class Barriers extends CollisionObjects {
 	protected Color blankColor = Color.GRAY;
 	protected Color chargeColor = Color.ORANGE;
 	File org = new File("ImageFolder/barrier_electric.png");
+	protected Rectangle box = null;
 
 	// Constructor setting the position, rotation, and if the barrier is electrified
 	Barriers(int x, int y, int rotation, boolean isCharged) {
@@ -54,23 +55,20 @@ class Barriers extends CollisionObjects {
 		g2.rotate(-Math.toRadians(rotation), x + 5, y + 50);
 	}
 
-	//removes a life if the hero collides with the barrier
+	// removes a life if the hero collides with the barrier
 	@Override
 	public void collisionWithHero(Hero hero) {
-		if(!isCharged) {
-			
-			
-			Rectangle heroBox = hero.getBox();
-			Rectangle barrier = getBox();
-			if(heroBox.intersects(barrier)) {
-				hero.setColliding(true);
-			}
-			hero.setColliding(false);
+		if (!isCharged) {
+			hero.heroX = hero.getX() - 5;
+			hero.heroY = hero.getY();
+		} else {
+			hero.heroLives--;
+			hero.heroX = 10;
+			hero.heroY = 710;
 		}
 	}
 
-	//gets the bounding box for the given barrier
-	@Override
+	// gets the bounding box for the given barrier
 	public Rectangle getBox() {
 		return new Rectangle(x, y, 10, 100);
 	}

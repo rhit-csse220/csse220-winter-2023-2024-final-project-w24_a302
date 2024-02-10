@@ -3,7 +3,6 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +60,7 @@ public abstract class Missiles {
 	public void collisionWithHero(Hero hero) {
 		hero.heroLives--;
 		hero.heroX = 10;
-		hero.heroY = 700;
+		hero.heroY = 710;
 	}
 
 }
