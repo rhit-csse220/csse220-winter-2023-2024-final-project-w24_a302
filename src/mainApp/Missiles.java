@@ -49,14 +49,13 @@ public abstract class Missiles {
 			
 		}
 	}
-		
-
-		
-
+	
+	//gets the bounding box of the given missile
 	public Rectangle getBox() {
 		return new Rectangle(x, y, 50, 10);
 	}
 	
+	//actions done after the hero has been hit by a missile(return to start and lose a life)
 	public void collisionWithHero(Hero hero) {
 		hero.heroLives--;
 		hero.heroX = 10;

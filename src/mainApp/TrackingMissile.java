@@ -34,14 +34,6 @@ public class TrackingMissile extends Missiles {
 		double vy = this.speed * Math.sin(angle);
 		
 		x += vx;   
-		y += vy;
-		
+		y += vy;		
 	}
-
-	//gets the bounding box of the missile that is used for missile collisions
-	
-
-	
-
-
 }

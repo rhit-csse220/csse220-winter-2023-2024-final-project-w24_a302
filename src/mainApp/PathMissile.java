@@ -28,14 +28,4 @@ public class PathMissile extends Missiles {
 		x -= speed;
 		
 	}
-	
-	//gets the bounding box that will get used for collisions
-	
-
-	
-	
-	
-
-
-	
 }

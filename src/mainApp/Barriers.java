@@ -24,7 +24,6 @@ class Barriers extends CollisionObjects {
 	protected Color blankColor = Color.GRAY;
 	protected Color chargeColor = Color.ORANGE;
 	File org = new File("ImageFolder/barrier_electric.png");
-	protected Rectangle box = null;
 
 	// Constructor setting the position, rotation, and if the barrier is electrified
 	Barriers(int x, int y, int rotation, boolean isCharged) {

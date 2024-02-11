@@ -13,16 +13,12 @@ import java.awt.geom.Ellipse2D;
  */
 public class Coin extends CollisionObjects{
 	protected Color coinColor = Color.YELLOW;
-	private MainAppComponent mainAppComponent;
 	
 	//Constructor setting the position
 	Coin(int x, int y){
 		super(x,y,true);
 	}
 	
-	public void setMainAppComponent(MainAppComponent mainAppComponent) {
-		this.mainAppComponent = mainAppComponent;
-	}
 	//Method used to draw the coin when called
 	@Override
 	public void drawOn(Graphics2D g2) {

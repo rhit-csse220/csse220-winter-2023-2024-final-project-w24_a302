@@ -131,6 +131,7 @@ public class Hero {
 		return collision;
 	}
 	
+	//determines whether the hero has been hit by a missile by comparing their hit boxes
 	public boolean heroHitsMissile(Missiles missile) {
 		Rectangle heroBox = getBox();
 		Rectangle missileBox = missile.getBox();

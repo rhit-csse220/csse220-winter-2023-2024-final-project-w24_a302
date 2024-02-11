@@ -15,6 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -173,6 +174,11 @@ public class MainApp {
 				if(mainAppComponent.checkWinner()) {
 					frame.dispose();
 					runApp(levelNumb+1, mainAppComponent.getLives(), mainAppComponent.getCoins());
+				}
+				else if(mainAppComponent.checkLoser()) {
+					frame.dispose();
+					new GameOver();
+					
 				}
 				else {
 					mainAppComponent.updateHero();

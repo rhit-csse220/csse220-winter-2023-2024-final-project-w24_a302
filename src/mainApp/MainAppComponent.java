@@ -25,11 +25,12 @@ public class MainAppComponent extends JComponent {
 	public ArrayList<CollisionObjects> objects = new ArrayList<CollisionObjects>();
 	public ArrayList<Missiles> missiles = new ArrayList<Missiles>();
 
-
+	//main constructor for the main app component class that makes a hero object
 	public MainAppComponent() {
 		hero = new Hero(10,735,2);
-		}
+	}
 	
+	//checks for a collision with any of the necessary objects and does the necessary actions
 	public void checkForCollision() {
 		ArrayList<CollisionObjects> clone = new ArrayList<>(objects);
 		ArrayList<Missiles> cloneM = new ArrayList<>(missiles);
@@ -39,15 +40,10 @@ public class MainAppComponent extends JComponent {
 					object.collisionWithHero(hero);
 					objects.remove(object);
 				} else {
-				
 					object.collisionWithHero(hero);
-					
-					
 				}
-			}
-			
+			}	
 		}
-		
 		for(Missiles missile: cloneM) {
 			if(hero.heroHitsMissile(missile)) {
 				missile.collisionWithHero(hero);
@@ -56,6 +52,7 @@ public class MainAppComponent extends JComponent {
 		}
 	}
 		
+	//paints all of the objects for the same onto the given graphics object
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -65,7 +62,6 @@ public class MainAppComponent extends JComponent {
 		hero.drawOn(g2);
 		repaint();
         } catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (CollisionObjects o: this.objects) {
@@ -85,7 +81,6 @@ public class MainAppComponent extends JComponent {
 	//Method used to add coins to level loader when level is made
 	public void addCoin(String[] coinParts) {
 		Coin coin = new Coin(Integer.parseInt(coinParts[1]), Integer.parseInt(coinParts[2]));
-		coin.setMainAppComponent(this);
 		objects.add(coin);
 	}
 	
@@ -119,16 +114,7 @@ public class MainAppComponent extends JComponent {
 	public void updateHero() {
 		hero.updateHero();
 		checkForCollision();
-		if(hero.heroLives <= 0) {
-			
-			JFrame main = (JFrame) SwingUtilities.getWindowAncestor(this);
-			main.dispose();
-			
-			new GameOver();
-			setEnabled(false);
-		} else {
 		repaint();
-		}
 	}
 	
 	//toggles whether the character is jumping or falling
@@ -166,4 +152,12 @@ public class MainAppComponent extends JComponent {
 		return hero.heroLives;
 	}
 	
+	//check if the hero is out of lives
+	public boolean checkLoser() {
+		if(hero.heroLives == 0) {
+			hero.heroLives = -1; 
+			return true;
+		}
+		return false;
+	}
 }
