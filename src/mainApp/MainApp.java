@@ -224,7 +224,8 @@ public class MainApp {
         JButton startButton = new JButton("Start");
 		panel.add(startButton, BorderLayout.WEST);
 		startButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {  
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				mainApp.runApp(1,3,0);
 			}
 		});
