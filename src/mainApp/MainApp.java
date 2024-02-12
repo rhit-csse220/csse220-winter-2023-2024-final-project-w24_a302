@@ -1,5 +1,7 @@
  package mainApp;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,8 +15,10 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -28,7 +32,6 @@ import javax.swing.Timer;
  */
 public class MainApp {
 
-	final String frameTitle = "Graphics Display";
 	final int frameWidth = 1500;
 	final int frameHeight = 800;
 	// final int frameXLoc = 100;
@@ -65,9 +68,8 @@ public class MainApp {
 	// Method used to run the game when given a fileName and levelNumb
 	private void runGame(String fileName, int levelNumb, int lives, int coins) throws FileNotFoundException, InvalidLevelFormatException{
 	    JFrame frame = new JFrame();
-	    frame.setTitle(frameTitle);
+	    frame.setTitle("Level " + levelNumb);
 	    frame.setSize(frameWidth, frameHeight);
-	   // frame.setLocation(frameXLoc, frameYLoc);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		FileReader file = new FileReader(fileName);
@@ -203,7 +205,33 @@ public class MainApp {
 	 */
 	public static void main(String[] args) {
 		MainApp mainApp = new MainApp();
-		mainApp.runApp(1,3,0);
+		JFrame frame = new JFrame();
+		
+		frame.setTitle("Start Screen");
+		frame.setSize(300,150);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel message1 = new JLabel("<html>Press Spacebar to Fly Up<br>Avoid Barriers and Missiles<br> Collect Coins<br>Reach the End of the Screen</html>");
+
+		
+		JPanel panel1 = new JPanel();
+		frame.add(panel1, BorderLayout.NORTH);
+		panel1.add(message1,BorderLayout.NORTH);
+		
+		
+		JPanel panel = new JPanel();
+		
+        JButton startButton = new JButton("Start");
+		panel.add(startButton, BorderLayout.WEST);
+		startButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {  
+				mainApp.runApp(1,3,0);
+			}
+		});
+		
+		frame.add(panel,BorderLayout.SOUTH);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 	} // main
 
 }
