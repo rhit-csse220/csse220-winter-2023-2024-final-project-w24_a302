@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Class: Coin
@@ -13,6 +18,7 @@ import java.awt.geom.Ellipse2D;
  */
 public class Coin extends CollisionObjects{
 	protected Color coinColor = Color.YELLOW;
+	File org = new File("ImageFolder/JetPackCoin.png");
 	
 	//Constructor setting the position
 	Coin(int x, int y){
@@ -22,9 +28,17 @@ public class Coin extends CollisionObjects{
 	//Method used to draw the coin when called
 	@Override
 	public void drawOn(Graphics2D g2) {
-        Ellipse2D coin = new Ellipse2D.Double(x, y, 25, 25);
-        g2.setColor(coinColor);
-        g2.fill(coin);
+        try {
+			BufferedImage original = ImageIO.read(org);
+			g2.drawImage(original, x, y, 25, 25, null);
+
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			 Ellipse2D coin = new Ellipse2D.Double(x, y, 25, 25);
+		        g2.setColor(coinColor);
+		        g2.fill(coin);
+			
+		}
     }
 
 	//updates the coin count if the coin collides with the hero
