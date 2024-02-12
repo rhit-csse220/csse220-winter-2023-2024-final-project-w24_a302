@@ -37,22 +37,27 @@ public class MainApp {
 	// Runs the app and gives a message if there is no level or wrong format then
 	// returns to level 1
 	private void runApp(int levelNumb, int lives, int coins) {
-		String filename = "level" + levelNumb + ".txt";
-		while (true) {
-			try {
-				runGame(filename, levelNumb, lives, coins);
-				break;
-			} catch (FileNotFoundException e) {
-				System.out.println("Level " + (levelNumb) + " does not exist. Going back to level 1");
-				filename = "level1.txt";
-				levelNumb = 1;
-				coins = 0;
-			} catch (InvalidLevelFormatException e) {
-				System.out.println(e.getMessage());
-				filename = "level1.txt";
-				levelNumb = 1;
-				lives = 3;
-				coins = 0;
+		if(levelNumb == 5) {
+			new Winner();
+		}
+		else {
+			String filename = "level" + levelNumb + ".txt";
+			while (true) {
+				try {
+					runGame(filename, levelNumb, lives, coins);
+					break;
+				} catch (FileNotFoundException e) {
+					System.out.println("Level " + (levelNumb) + " does not exist. Going back to level 1");
+					filename = "level1.txt";
+					levelNumb = 1;
+					coins = 0;
+				} catch (InvalidLevelFormatException e) {
+					System.out.println(e.getMessage());
+					filename = "level1.txt";
+					levelNumb = 1;
+					lives = 3;
+					coins = 0;
+				}
 			}
 		}
 	}// runApp

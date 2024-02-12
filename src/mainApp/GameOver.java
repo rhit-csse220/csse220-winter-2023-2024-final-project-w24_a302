@@ -30,6 +30,7 @@ public class GameOver extends JFrame {
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
 	}
 
 }
