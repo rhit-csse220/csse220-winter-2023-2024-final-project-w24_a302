@@ -39,6 +39,7 @@ public class Winner extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {  
 				MainApp.main(null);
+				setVisible(false);
 			}
 		});
 		

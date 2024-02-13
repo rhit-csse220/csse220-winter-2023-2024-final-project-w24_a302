@@ -83,9 +83,9 @@ public class Hero {
 	public void falling() {
 		heroY += Math.pow(2, fallTime);
 
-		if (heroY > 710) {
+		if (heroY > 700) {
 			this.fallTime = 0;
-			heroY = 710;
+			heroY = 700;
 		}
 
 	}
@@ -112,6 +112,10 @@ public class Hero {
 	//updates the coin count to go +1 when prompted
 	public void updateCoinCount() {
 		coinCount += 1;
+	}
+	
+	public int getCoinCount() {
+		return coinCount;
 	}
 
 

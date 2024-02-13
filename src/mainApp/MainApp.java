@@ -1,11 +1,16 @@
  package mainApp;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -34,14 +40,57 @@ public class MainApp {
 
 	final int frameWidth = 1500;
 	final int frameHeight = 800;
-	// final int frameXLoc = 100;
-	// final int frameYLoc = 100;
+	Timer timer;
+	private HighScoreManager highScoreManager;
+	
+	
+	public MainApp() {
+		highScoreManager = new HighScoreManager();
+	}
+	
+	JLabel timerLabel = new JLabel("Time: 0");
+	int totalTimeElapsed = 0;
+	final Timer timer2 = new Timer(1000, new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			totalTimeElapsed++;
+			timerLabel.setText("Time: " + totalTimeElapsed);
+		}
+	});
+	
+	private void updateHighScore(String initials, int elapsedTime) {
+		if(highScoreManager != null) {
+			highScoreManager.addScore(initials, elapsedTime);
+		} else {
+			System.err.println("HighScoreManager is not initialized.");
+		}
+
+	}
+	
+	private String handleInitials() {
+		String initials = showInputDialog();
+        if (initials != null && !initials.isEmpty()) {
+            System.out.println("Initials entered: " + initials);
+        } else {
+            System.out.println("No initials entered.");
+        }
+		return initials;
+	}
+	
+	private static String showInputDialog() {
+        return JOptionPane.showInputDialog(null, "Please enter your initials:", "Initials Input", JOptionPane.QUESTION_MESSAGE);
+    }
 
 	// Runs the app and gives a message if there is no level or wrong format then
 	// returns to level 1
 	private void runApp(int levelNumb, int lives, int coins) {
 		if(levelNumb == 5) {
+			String initials = handleInitials();
+			updateHighScore(initials, totalTimeElapsed);
 			new Winner();
+			timer.stop();
 		}
 		else {
 			String filename = "level" + levelNumb + ".txt";
@@ -64,10 +113,16 @@ public class MainApp {
 			}
 		}
 	}// runApp
+	
 
 	// Method used to run the game when given a fileName and levelNumb
 	private void runGame(String fileName, int levelNumb, int lives, int coins) throws FileNotFoundException, InvalidLevelFormatException{
-	    JFrame frame = new JFrame();
+		JFrame frame = new JFrame();
+		ImageIcon imageIcon = new ImageIcon("ImageFolder/Background.png");
+
+		JLabel label = new JLabel(imageIcon);
+        label.setLayout(new BorderLayout());
+        frame.setContentPane(label);
 	    frame.setTitle("Level " + levelNumb);
 	    frame.setSize(frameWidth, frameHeight);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +133,12 @@ public class MainApp {
 	    //Creates the level based off of which text file is loaded in
         MainAppComponent mainAppComponent = new MainAppComponent();
         frame.add(mainAppComponent);
+        
+	    frame.add(timerLabel, BorderLayout.NORTH);
+	    if(!timer2.isRunning()) {
+	    	timer2.start();
+	    }
+	    
         
         mainAppComponent.setCoinAndLives(lives, coins);
         
@@ -175,9 +236,11 @@ public class MainApp {
         
         
         //Timer used to control the x position of the hero
-		Timer t = new Timer(50, new ActionListener() {
+        timer = new Timer(50, new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				if(mainAppComponent.checkWinner()) {
 					frame.dispose();
 					runApp(levelNumb+1, mainAppComponent.getLives(), mainAppComponent.getCoins());
@@ -194,9 +257,9 @@ public class MainApp {
 				}
 			}
 		});
-		t.start();
+		timer.start();
         frame.setVisible(true);
-	}
+        }
 
 	/**
 	 * ensures: runs the application
@@ -229,6 +292,10 @@ public class MainApp {
 				mainApp.runApp(1,3,0);
 			}
 		});
+		
+		JButton highScoreButton = new JButton("Highscores");
+		panel.add(highScoreButton);
+		highScoreButton.addActionListener(e -> new HighScoreFrame(mainApp.highScoreManager));
 		
 		frame.add(panel,BorderLayout.SOUTH);
 		frame.setLocationRelativeTo(null);

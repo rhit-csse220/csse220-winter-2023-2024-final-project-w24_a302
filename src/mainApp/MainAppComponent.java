@@ -27,7 +27,7 @@ public class MainAppComponent extends JComponent {
 
 	//main constructor for the main app component class that makes a hero object
 	public MainAppComponent() {
-		hero = new Hero(10,735,2);
+		hero = new Hero(10,710,2);
 	}
 	
 	//checks for a collision with any of the necessary objects and does the necessary actions
