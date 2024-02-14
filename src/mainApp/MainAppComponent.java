@@ -72,10 +72,11 @@ public class MainAppComponent extends JComponent {
 			missile.updateMissile();
 		}
 		
-		g2.setColor(Color.BLACK);
+		g2.setColor(Color.WHITE);
 		g2.setFont(new Font("Arial", Font.BOLD, 16));
 		g2.drawString("Coins: " + hero.coinCount, getWidth() - 100, 20);
 		g2.drawString("Lives: " + hero.heroLives, getWidth() - 100, 40);
+		g2.setColor(Color.BLACK);
 	}
 	
 	//Method used to add coins to level loader when level is made

@@ -13,18 +13,25 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
+/**
+ * Class: HighScoreManager
+ * @author W24_A_302
+ * <br>Purpose: HighScoreManager is used to load and save highscores from the game into a text file
+ * 				it saves the top 5 scores based off of least amount of time to complete the game. 
+ * <br>Restrictions: None
+ */
 public class HighScoreManager {
 	private static final String HIGH_SCORE_FILE = "src/mainApp/highscores.txt";
 	private List<HighScoreEntry> highScores;
 	private static final int maxHighscores = 5;
 	
-	
+	//Constructor for the HighScoreManager
 	public HighScoreManager() {
 		highScores = new ArrayList<HighScoreEntry>();
 		loadHighScores();
 	}
 	
+	//Method used to load the highscores from the file
 	private void loadHighScores() {
 		BufferedReader reader = null;
 		String line = null;
@@ -44,6 +51,7 @@ public class HighScoreManager {
 		} 	
 	}
 	
+	//Method used to save the highscores to the text file
 	public void saveHighScores() {
 		BufferedWriter writer = null;
 		int bound = Math.min(maxHighscores, highScores.size());
@@ -62,6 +70,7 @@ public class HighScoreManager {
 		
 	}
 	
+	//Method used to add a score to the highscores list
 	public void addScore(String initials, int score) {
 		HighScoreEntry scoreEntry = new HighScoreEntry(initials, score);
 		highScores.add(scoreEntry);
@@ -69,10 +78,18 @@ public class HighScoreManager {
 		saveHighScores();
 	}
 	
+	//Method used to get highscores list
 	public List<HighScoreEntry> getHighScores() {
 		return highScores;
 	}
 	
+	/**
+	 * Class: HighScoreEntry
+	 * @author W24_A_302
+	 * <br>Purpose: HighScoreEntry is an inner class used to create a hashmap like class without
+	 * 				worrying about the problem with have a unique key.
+	 * <br>Restrictions: None
+	 */
 	class HighScoreEntry implements Comparable<HighScoreEntry> {
 	    private String initials;
 	    private int score;
@@ -89,7 +106,9 @@ public class HighScoreManager {
 	    public int getScore() {
 	        return score;
 	    }
-
+	    
+	    
+	    //Method used to compare the score to previous score
 	    @Override
 	    public int compareTo(HighScoreEntry other) {
 	        return Integer.compare(score, other.score);

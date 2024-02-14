@@ -8,10 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * Class: Winner
+ * @author W24_A_302
+ * <br>Purpose: Winner is used to create the winner frame and give the user to
+ * 				either exit or start over.
+ * <br>Restrictions: None
+ */
 public class Winner extends JFrame {
 	
-	
+	//Constructor for the winner class
 	public Winner() {
 		
 		setTitle("Winner!");
@@ -26,6 +32,7 @@ public class Winner extends JFrame {
 		
 		JPanel panel2 = new JPanel();
 		
+		//Exit button
         JButton exitButton = new JButton("Exit");
 		panel2.add(exitButton, BorderLayout.EAST);
 		exitButton.addActionListener(new ActionListener() {
@@ -34,6 +41,7 @@ public class Winner extends JFrame {
 			}
 		});
 		
+		//Start button
         JButton startButton = new JButton("Start Over");
 		panel2.add(startButton, BorderLayout.WEST);
 		startButton.addActionListener(new ActionListener() {

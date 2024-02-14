@@ -8,9 +8,17 @@ import javax.swing.JTextArea;
 
 import mainApp.HighScoreManager.HighScoreEntry;
 
+/**
+ * Class: HighScoreFrame
+ * @author W24_A_302
+ * <br>Purpose: HighScoreFrame is used to create the frame that holds the Highscore list.
+ * <br>Restrictions: None
+ */
 public class HighScoreFrame extends JFrame {
 	private HighScoreManager highScoreManager;
 	
+	
+	//Constructor for the HighScoreFrame
 	public HighScoreFrame(HighScoreManager highScoreManager) {
 		this.highScoreManager = highScoreManager;
 		setTitle("Highscores");

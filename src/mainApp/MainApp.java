@@ -60,6 +60,7 @@ public class MainApp {
 		}
 	});
 	
+	//Method is used to update the highscore with intitials and elapsed time
 	private void updateHighScore(String initials, int elapsedTime) {
 		if(highScoreManager != null) {
 			highScoreManager.addScore(initials, elapsedTime);
@@ -69,6 +70,7 @@ public class MainApp {
 
 	}
 	
+	//Method to create input dialog when the game is win to input initials
 	private String handleInitials() {
 		String initials = showInputDialog();
         if (initials != null && !initials.isEmpty()) {
@@ -79,6 +81,7 @@ public class MainApp {
 		return initials;
 	}
 	
+	//Method for input dialog
 	private static String showInputDialog() {
         return JOptionPane.showInputDialog(null, "Please enter your initials:", "Initials Input", JOptionPane.QUESTION_MESSAGE);
     }
@@ -118,7 +121,7 @@ public class MainApp {
 	// Method used to run the game when given a fileName and levelNumb
 	private void runGame(String fileName, int levelNumb, int lives, int coins) throws FileNotFoundException, InvalidLevelFormatException{
 		JFrame frame = new JFrame();
-		ImageIcon imageIcon = new ImageIcon("ImageFolder/Background.png");
+		ImageIcon imageIcon = new ImageIcon("ImageFolder/test.png");
 
 		JLabel label = new JLabel(imageIcon);
         label.setLayout(new BorderLayout());
