@@ -238,7 +238,7 @@ public class MainApp {
 	    });
         
         
-        //Timer used to control the x position of the hero
+        //Timer used to control when each object updates
         timer = new Timer(50, new ActionListener() {
 			
 			@Override
